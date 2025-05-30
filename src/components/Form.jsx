@@ -40,7 +40,7 @@ export default function Form() {
         errors,
         enteredValues: { name, email, age, gender, dateOfBirth, experience },
       };
-
+    alert('Form submitted successfully!');
     setExperienceValue(5);
     return { errors: null };
   }
