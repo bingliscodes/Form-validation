@@ -2,14 +2,24 @@ export default function Input({
   inputLabel,
   inputType,
   inputName,
-  className,
+  formState,
   errorId,
+  ...props
 }) {
   return (
     <label>
       {inputLabel}
-      <input type={inputType} name={inputName} />
-      <small className={className} id={errorId}></small>
+      <input
+        {...props}
+        type={inputType}
+        name={inputName}
+        defaultValue={formState.enteredValues?.[inputName]}
+      />
+      {formState.errors?.[errorId] && (
+        <small className="error" id={errorId}>
+          {formState.errors[errorId]}
+        </small>
+      )}
     </label>
   );
 }

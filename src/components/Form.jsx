@@ -1,4 +1,5 @@
 import Header from './Header.jsx';
+import Input from './Input.jsx';
 import { useActionState, useState } from 'react';
 import {
   validateName,
@@ -57,47 +58,27 @@ export default function Form() {
     <div className="form-container">
       <Header />
       <form id="infoForm" action={formAction}>
-        <label>
-          Name:
-          <input
-            type="text"
-            name="name"
-            defaultValue={formState.enteredValues?.name}
-          />
-          {formState.errors?.nameError && (
-            <small className="error" id="nameError">
-              {formState.errors?.nameError}
-            </small>
-          )}
-        </label>
-
-        <label>
-          Email:
-          <input
-            type="text"
-            name="email"
-            defaultValue={formState.enteredValues?.email}
-          />
-          {formState.errors?.emailError && (
-            <small className="error" id="emailError">
-              {formState.errors.emailError}
-            </small>
-          )}
-        </label>
-
-        <label>
-          Age:
-          <input
-            type="number"
-            name="age"
-            defaultValue={formState.enteredValues?.age}
-          />
-          {formState.errors?.ageError && (
-            <small className="error" id="emailError">
-              {formState.errors.ageError}
-            </small>
-          )}
-        </label>
+        <Input
+          inputLabel="Name"
+          inputName="name"
+          inputType="text"
+          formState={formState}
+          errorId="nameError"
+        />
+        <Input
+          inputLabel="Email"
+          inputName="email"
+          inputType="text"
+          formState={formState}
+          errorId="emailError"
+        />
+        <Input
+          inputLabel="Age"
+          inputName="age"
+          inputType="number"
+          formState={formState}
+          errorId="ageError"
+        />
 
         <label>
           Gender:
@@ -110,25 +91,19 @@ export default function Form() {
             <option value="Other">Other</option>
           </select>
           {formState.errors?.genderError && (
-            <small className="error" id="emailError">
+            <small className="error" id="genderError">
               {formState.errors.genderError}
             </small>
           )}
         </label>
 
-        <label>
-          Date of Birth:
-          <input
-            type="date"
-            name="dob"
-            defaultValue={formState.enteredValues?.dateOfBirth}
-          />
-          {formState.errors?.birthdayError && (
-            <small className="error" id="emailError">
-              {formState.errors.birthdayError}
-            </small>
-          )}
-        </label>
+        <Input
+          inputLabel="Date of Birth"
+          inputName="dob"
+          inputType="date"
+          formState={formState}
+          errorId="birthdayError"
+        />
 
         <label>
           Experience Level (1-10):
