@@ -116,7 +116,7 @@ export default function Form() {
             max="10"
             onChange={handleExperienceChange}
           />
-          <span id="experienceValue">{experienceValue}</span>
+          <span>{experienceValue}</span>
         </label>
 
         <button>Submit</button>
