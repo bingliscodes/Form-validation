@@ -7,7 +7,7 @@ export function validateAge(age) {
 }
 
 export function isNotEmpty(value) {
-  return value.trim() !== '';
+  return value?.trim() !== '';
 }
 
 export function validateDOB(date) {

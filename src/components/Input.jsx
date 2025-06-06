@@ -17,7 +17,11 @@ export default function Input({
       />
       {formState.errors?.[errorId] && (
         <small className="error" id={errorId}>
-          {formState.errors[errorId]}
+          <ul>
+            {formState.errors[errorId].map((err) => (
+              <li key={err}>{err}</li>
+            ))}
+          </ul>
         </small>
       )}
     </label>

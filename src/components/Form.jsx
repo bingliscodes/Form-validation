@@ -17,24 +17,39 @@ export default function Form() {
     const email = formData.get('email');
     const age = formData.get('age');
     const gender = formData.get('gender');
-    const dateOfBirth = formData.get('dob');
+    const dateOfBirth = formData.get('dateOfBirth');
     const experience = experienceValue;
 
     const errors = {};
+    errors.nameError = [];
+    errors.emailError = [];
+    errors.ageError = [];
+    errors.birthdayError = [];
+    errors.genderError = [];
 
-    if (!validateName(name) || !isNotEmpty(name))
-      errors.nameError = 'Name must be at least 2 characters';
+    if (!isNotEmpty(name)) errors.nameError.push('Name is a required field.');
+    if (!validateName(name))
+      errors.nameError.push('Name must be at least 2 characters');
 
-    if (!validateEmail(email) || !isNotEmpty(email))
-      errors.emailError = 'Please enter a valid email address';
+    if (!isNotEmpty(email))
+      errors.emailError.push('Email is a required field.');
+    if (!validateEmail(email))
+      errors.emailError.push('Please enter a valid email address');
 
-    if (!validateAge(age) || !isNotEmpty(age))
-      errors.ageError = 'Age must be a number between 18 and 99';
+    if (!isNotEmpty(age)) errors.ageError.push('Age is a required field.');
+    if (!validateAge(age))
+      errors.ageError.push('Age must be a number between 18 and 99');
 
-    if (!isNotEmpty(gender)) errors.genderError = 'Please select an option';
+    if (!isNotEmpty(dateOfBirth))
+      errors.birthdayError.push('Birthday is a required field.');
 
-    if (!validateDOB(Date.parse(dateOfBirth)) || !isNotEmpty(dateOfBirth))
-      errors.birthdayError = "Please select a birthday before today's date";
+    if (!validateDOB(Date.parse(dateOfBirth)))
+      errors.birthdayError.push("Please select a birthday before today's date");
+
+    if (!isNotEmpty(gender))
+      errors.genderError.push(
+        'Gender is a required field. Please select an option.'
+      );
 
     if (Object.keys(errors).length > 0)
       return {
@@ -99,7 +114,7 @@ export default function Form() {
 
         <Input
           inputLabel="Date of Birth"
-          inputName="dob"
+          inputName="dateOfBirth"
           inputType="date"
           formState={formState}
           errorId="birthdayError"
